@@ -480,9 +480,6 @@
       gap:24px;
       align-items:stretch;
     }
-    .location-card,.rsvp-card{
-      padding:28px;
-    }
     .map-embed{
       min-height:100%;
       border-radius:22px;
@@ -669,10 +666,9 @@
     </svg>
   </button>
 
-  <audio id="bgMusic" loop>
-    <!-- Ganti src di bawah dengan file musik Anda -->
-    <source src="" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop preload="auto">
+  <source src="musik-undangan.mp3" type="audio/mpeg">
+</audio>
 
   <header class="hero" id="home">
     <div class="container">
@@ -803,9 +799,7 @@
     <section id="cerita">
       <div class="container">
         <div class="section-title">
-          <span class="mini"></span>
           <h3>Perjalanan Cinta</h3>
-          <p></p>
         </div>
 
         <div class="story-grid">
@@ -836,7 +830,6 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
         <div class="section-title">
           <span class="mini">Galeri</span>
           <h3>Momen Spesial</h3>
-          <p></p>
         </div>
 
         <div class="gallery-grid">
@@ -855,7 +848,6 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
         <div class="section-title">
           <span class="mini">Lokasi</span>
           <h3>Tempat Acara</h3>
-          <p></p>
         </div>
 
         <div class="location-wrap">
@@ -872,12 +864,10 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
     <section id="rsvp">
       <div class="container">
         <div class="section-title">
-          <span class="mini"></span>
           <h3>Konfirmasi Kehadiran</h3>
-          <p></p>
         </div>
+        </section>
   <div class="rsvp-card">
-  <h3></h3>
 
   <input type="text" id="nama" placeholder="Nama Lengkap" required>
 
@@ -921,8 +911,8 @@ Kehadiran: ${hadir}`;
         <div class="section-title">
           <span class="mini">Wedding Gift</span>
           <h3>Tanda Kasih</h3>
-          <p></p>
         </div>
+        </section>
 
         <div class="card gift-box">
           <p style="color:var(--muted);max-width:70ch;">
@@ -960,142 +950,154 @@ Kehadiran: ${hadir}`;
 
 <script>
   // ====== CONFIG YANG MUDAH DIGANTI ======
-  const WEDDING_DATE = "2026-08-01T08:00:00"; // 1 Agustus 2026 jam 8 pagi
+  const WEDDING_DATE = "2026-08-01T08:00:00";
   const INVITEE_NAME = new URLSearchParams(window.location.search).get("to") || "Bapak/Ibu/Saudara/i";
 
-    // Tampilkan nama tamu jika ingin dibuka personal lewat ?to=Nama Tamu
-    const heroParagraph = document.querySelector('.hero-left p');
-    heroParagraph.innerHTML = `Yth. <strong>${INVITEE_NAME}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
+  // Tampilkan nama tamu
+  const heroParagraph = document.querySelector('.hero-left p');
+  heroParagraph.innerHTML = `Yth. <strong>${INVITEE_NAME}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
 
-    // ====== Countdown ======
-    const elDays = document.getElementById('days');
-    const elHours = document.getElementById('hours');
-    const elMinutes = document.getElementById('minutes');
-    const elSeconds = document.getElementById('seconds');
+  // ====== Countdown ======
+  const elDays = document.getElementById('days');
+  const elHours = document.getElementById('hours');
+  const elMinutes = document.getElementById('minutes');
+  const elSeconds = document.getElementById('seconds');
 
-    function updateCountdown(){
-      const now = new Date().getTime();
-      const target = new Date(WEDDING_DATE).getTime();
-      const distance = target - now;
+  function updateCountdown(){
+    const now = new Date().getTime();
+    const target = new Date(WEDDING_DATE).getTime();
+    const distance = target - now;
 
-      if(distance <= 0){
-        elDays.textContent = "00";
-        elHours.textContent = "00";
-        elMinutes.textContent = "00";
-        elSeconds.textContent = "00";
-        return;
+    if(distance <= 0){
+      elDays.textContent = "00";
+      elHours.textContent = "00";
+      elMinutes.textContent = "00";
+      elSeconds.textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
+    const seconds = Math.floor((distance / 1000) % 60);
+
+    elDays.textContent = String(days).padStart(2, '0');
+    elHours.textContent = String(hours).padStart(2, '0');
+    elMinutes.textContent = String(minutes).padStart(2, '0');
+    elSeconds.textContent = String(seconds).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ====== Music setup ======
+  const music = document.getElementById('bgMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const openInvitationBtn = document.getElementById('openInvitation');
+  let musicStarted = false;
+
+  async function playMusic() {
+    if (!music) return;
+
+    try {
+      await music.play();
+      musicStarted = true;
+      musicToggle.classList.add('playing');
+      musicToggle.setAttribute('aria-label', 'Jeda musik');
+    } catch (err) {
+      console.log('Autoplay diblokir browser:', err);
+    }
+  }
+
+  function pauseMusic() {
+    if (!music) return;
+    music.pause();
+    musicToggle.classList.remove('playing');
+    musicToggle.setAttribute('aria-label', 'Putar musik');
+  }
+
+  // ====== Tombol buka undangan + auto play musik ======
+  openInvitationBtn.addEventListener('click', async () => {
+    if (!musicStarted) {
+      await playMusic();
+    }
+    document.getElementById('acara').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // ====== Tombol musik melayang ======
+  musicToggle.addEventListener('click', async () => {
+    if (!music || !music.querySelector('source')?.getAttribute('src')) {
+      return;
+    }
+
+    if (music.paused) {
+      await playMusic();
+    } else {
+      pauseMusic();
+    }
+  });
+
+  // ====== Active nav on scroll ======
+  const sections = [...document.querySelectorAll('main section, header.hero')];
+  const navLinks = [...document.querySelectorAll('.nav-link')];
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id || 'home';
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
       }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-
-      elDays.textContent = String(days).padStart(2, '0');
-      elHours.textContent = String(hours).padStart(2, '0');
-      elMinutes.textContent = String(minutes).padStart(2, '0');
-      elSeconds.textContent = String(seconds).padStart(2, '0');
-    }
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    // ====== Tombol buka undangan ======
-    document.getElementById('openInvitation').addEventListener('click', () => {
-      document.getElementById('acara').scrollIntoView({behavior:'smooth'});
     });
+  }, { threshold: 0.45 });
 
-    // ====== Active nav on scroll ======
-    const sections = [...document.querySelectorAll('main section, header.hero')];
-    const navLinks = [...document.querySelectorAll('.nav-link')];
+  sections.forEach(section => observer.observe(section));
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          const id = entry.target.id || 'home';
-          navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    }, { threshold: 0.45 });
+  // ====== Gallery modal ======
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  const galleryModal = document.getElementById('galleryModal');
+  const modalImage = document.getElementById('modalImage');
+  const modalClose = document.getElementById('modalClose');
 
-    sections.forEach(section => observer.observe(section));
-
-    // ====== Gallery modal ======
-    const galleryItems = document.querySelectorAll('.gallery-item img');
-    const galleryModal = document.getElementById('galleryModal');
-    const modalImage = document.getElementById('modalImage');
-    const modalClose = document.getElementById('modalClose');
-
-    galleryItems.forEach(img => {
-      img.addEventListener('click', () => {
-        modalImage.src = img.src;
-        modalImage.alt = img.alt || 'Galeri';
-        galleryModal.classList.add('open');
-        galleryModal.setAttribute('aria-hidden', 'false');
-      });
+  galleryItems.forEach(img => {
+    img.addEventListener('click', () => {
+      modalImage.src = img.src;
+      modalImage.alt = img.alt || 'Galeri';
+      galleryModal.classList.add('open');
+      galleryModal.setAttribute('aria-hidden', 'false');
     });
+  });
 
-    function closeModal(){
-      galleryModal.classList.remove('open');
-      galleryModal.setAttribute('aria-hidden', 'true');
-      modalImage.src = '';
-    }
-    modalClose.addEventListener('click', closeModal);
-    galleryModal.addEventListener('click', (e) => {
-      if(e.target === galleryModal) closeModal();
-    });
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeModal();
-    });
+  function closeModal(){
+    galleryModal.classList.remove('open');
+    galleryModal.setAttribute('aria-hidden', 'true');
+    modalImage.src = '';
+  }
 
-    // ====== RSVP demo ======
-    const rsvpForm = document.getElementById('rsvpForm');
-    const rsvpMessage = document.getElementById('rsvpMessage');
+  modalClose.addEventListener('click', closeModal);
+  galleryModal.addEventListener('click', (e) => {
+    if(e.target === galleryModal) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeModal();
+  });
 
-    rsvpForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(rsvpForm);
-      const nama = data.get('nama') || 'Tamu';
-      const hadir = data.get('kehadiran') || '-';
-      rsvpMessage.textContent = `Terima kasih, ${nama}. Konfirmasi Anda (${hadir}) sudah tersimpan secara lokal di browser.`;
-      localStorage.setItem('rsvp_demo', JSON.stringify(Object.fromEntries(data.entries())));
-      rsvpForm.reset();
-    });
+  // ====== Copy bank number ======
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const target = document.querySelector(btn.dataset.copy);
+      if(!target) return;
 
-    // ====== Copy bank number ======
-    document.querySelectorAll('[data-copy]').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const target = document.querySelector(btn.dataset.copy);
-        if(!target) return;
-        try{
-          await navigator.clipboard.writeText(target.textContent.trim());
-          const oldText = btn.textContent;
-          btn.textContent = 'Tersalin!';
-          setTimeout(() => btn.textContent = oldText, 1600);
-        }catch(err){
-          alert('Nomor rekening: ' + target.textContent.trim());
-        }
-      });
-    });
-
-    // ====== Music toggle ======
-    const music = document.getElementById('bgMusic');
-    const musicToggle = document.getElementById('musicToggle');
-
-    musicToggle.addEventListener('click', async () => {
       try{
-        if(music.paused){
-          await music.play();
-          musicToggle.classList.add('playing');
-        }else{
-          music.pause();
-          musicToggle.classList.remove('playing');
-        }
+        await navigator.clipboard.writeText(target.textContent.trim());
+        const oldText = btn.textContent;
+        btn.textContent = 'Tersalin!';
+        setTimeout(() => btn.textContent = oldText, 1600);
       }catch(err){
-        alert('Tambahkan file musik pada elemen <audio> terlebih dahulu.');
+        alert('Nomor rekening: ' + target.textContent.trim());
       }
     });
+  });
   </script>
 </body>
 </html>
