@@ -1,13 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Undangan Pernikahan | Heri & Minarni Akwila</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#fff8f4;
@@ -55,6 +56,7 @@
     .ornament.o1{top:40px;left:-80px}
     .ornament.o2{top:280px;right:-60px;animation-delay:1.5s}
     .ornament.o3{bottom:200px;left:10%;animation-delay:3s}
+
     @keyframes float{
       0%,100%{transform:translateY(0)}
       50%{transform:translateY(-18px)}
@@ -80,9 +82,8 @@
       transition:.25s ease;
     }
     .music-toggle:hover{transform:translateY(-3px) scale(1.03)}
-    .music-toggle.playing .disc{
-      animation:spin 4s linear infinite;
-    }
+    .music-toggle.playing .disc{animation:spin 4s linear infinite}
+
     @keyframes spin{
       from{transform:rotate(0deg)}
       to{transform:rotate(360deg)}
@@ -477,7 +478,7 @@
 
     .location-wrap{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:1fr;
       gap:24px;
       align-items:stretch;
     }
@@ -491,7 +492,6 @@
       border:1px solid var(--line);
       background:#f6eee9;
     }
-
 
     .rsvp-grid{
       display:grid;
@@ -520,6 +520,7 @@
       box-shadow:0 0 0 4px rgba(159,111,90,.12);
     }
     textarea.input{min-height:120px;resize:vertical}
+
     .gift-box{
       padding:28px;
     }
@@ -600,6 +601,51 @@
       cursor:pointer;
     }
 
+    /* RSVP WA card */
+    .rsvp-card{
+      max-width:460px;
+      margin:auto;
+      padding:28px;
+      border-radius:20px;
+      background:#fff;
+      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      font-family:sans-serif;
+    }
+
+    .rsvp-card h3{
+      margin-bottom:18px;
+      text-align:center;
+      color:var(--primary-dark);
+      font-family:'Cormorant Garamond',serif;
+      font-size:2rem;
+    }
+
+    .rsvp-card input,
+    .rsvp-card select{
+      width:100%;
+      padding:12px;
+      margin-bottom:12px;
+      border:1px solid #ddd;
+      border-radius:12px;
+      font:inherit;
+    }
+
+    .rsvp-card button{
+      width:100%;
+      padding:12px;
+      border:none;
+      background:#25D366;
+      color:white;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:1rem;
+    }
+
+    .rsvp-card button:hover{
+      background:#1ebe5d;
+    }
+
     /* Responsive */
     @media (max-width: 980px){
       .hero-cover{grid-template-columns:1fr}
@@ -619,44 +665,6 @@
       .nav-link{white-space:nowrap}
       section{padding:66px 0}
     }
-    .rsvp-card{
-  max-width:400px;
-  margin:auto;
-  padding:20px;
-  border-radius:16px;
-  background:#fff;
-  box-shadow:0 10px 30px rgba(0,0,0,0.1);
-  font-family:sans-serif;
-}
-
-.rsvp-card h3{
-  margin-bottom:15px;
-  text-align:center;
-}
-
-.rsvp-card input,
-.rsvp-card select{
-  width:100%;
-  padding:10px;
-  margin-bottom:10px;
-  border:1px solid #ddd;
-  border-radius:10px;
-}
-
-.rsvp-card button{
-  width:100%;
-  padding:12px;
-  border:none;
-  background:#25D366;
-  color:white;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.rsvp-card button:hover{
-  background:#1ebe5d;
-}
   </style>
 </head>
 <body>
@@ -671,7 +679,6 @@
   </button>
 
   <audio id="bgMusic" loop>
-    <!-- Ganti src di bawah dengan file musik Anda -->
     <source src="" type="audio/mpeg">
   </audio>
 
@@ -734,7 +741,7 @@
       <div class="container">
         <div class="card quote-box">
           <strong>“Demikianlah mereka bukan lagi dua, melainkan satu. Karena itu, apa yang telah dipersatukan Allah, tidak boleh diceraikan manusia.” (Matius 19:6)</strong>
-          <p> Sebuah awal yang indah bagi kami untuk memulai perjalanan hidup bersama dalam kasih, iman, dan harapan.</p>
+          <p>Sebuah awal yang indah bagi kami untuk memulai perjalanan hidup bersama dalam kasih, iman, dan harapan.</p>
         </div>
       </div>
     </section>
@@ -804,9 +811,7 @@
     <section id="cerita">
       <div class="container">
         <div class="section-title">
-          <span class="mini"></span>
           <h3>Perjalanan Cinta</h3>
-          <p></p>
         </div>
 
         <div class="story-grid">
@@ -825,8 +830,7 @@
           <article class="card story-item">
             <span class="year">2026</span>
             <h5>Menuju Hari Bahagia</h5>
-            <p>Dengan penuh rasa syukur, kami melangkah menuju hari istimewa yang telah lama kami nantikan. Kami memohon doa restu dari keluarga dan sahabat agar segala persiapan diberkahi dan dimudahkan.
-Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen bahagia kami dalam ikatan cinta yang penuh harapan.</p>
+            <p>Dengan penuh rasa syukur, kami melangkah menuju hari istimewa yang telah lama kami nantikan. Kami memohon doa restu dari keluarga dan sahabat agar segala persiapan diberkahi dan dimudahkan. Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen bahagia kami dalam ikatan cinta yang penuh harapan.</p>
           </article>
         </div>
       </div>
@@ -837,7 +841,6 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
         <div class="section-title">
           <span class="mini">Galeri</span>
           <h3>Momen Spesial</h3>
-          <p></p>
         </div>
 
         <div class="gallery-grid">
@@ -856,18 +859,48 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
         <div class="section-title">
           <span class="mini">Lokasi</span>
           <h3>Tempat Acara</h3>
-          <p></p>
         </div>
 
         <div class="location-wrap">
           <article class="card location-card">
-            <h4 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary-dark);margin-center:12px;">Detail Lokasi</h4>
+            <h4 style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--primary-dark);margin-bottom:12px;">
+              Detail Lokasi
+            </h4>
             <p style="color:var(--muted);margin-bottom:18px;">
               <strong>Gereja Katolik Paroki Hati Kudus Yesus, Rawak.</strong><br>
             </p>
-            <p style="color:var(--muted);margin-bottom:18px;"></p>
-            <a class="btn btn-primary" href="https://www.google.com/maps?q=Gereja+Katolik+Paroki+Hati+Kudus+Yesus,+Rawak" target="_blank" rel="noopener">Buka Google Maps</a>
+            <a class="btn btn-primary"
+               href="https://www.google.com/maps?q=Gereja+Katolik+Paroki+Hati+Kudus+Yesus,+Rawak"
+               target="_blank" rel="noopener">
+              Buka Google Maps
+            </a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="container">
+        <div class="section-title">
+          <span class="mini">RSVP</span>
+          <h3>Konfirmasi Kehadiran</h3>
+          <p>Silakan isi data kehadiran Anda, lalu kirim langsung ke WhatsApp kami.</p>
+        </div>
+
+        <div class="rsvp-card">
+          <h3>Konfirmasi Kehadiran</h3>
+
+          <input type="text" id="nama" placeholder="Nama Lengkap" required>
+          <input type="number" id="jumlah" placeholder="Jumlah Tamu" min="1" required>
+
+          <select id="kehadiran">
+            <option value="Hadir">Hadir</option>
+            <option value="Tidak Hadir">Tidak Hadir</option>
+          </select>
+
+          <button type="button" onclick="kirimWA()">Kirim</button>
+        </div>
+      </div>
     </section>
 
     <section id="gift">
@@ -876,7 +909,7 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
           <span class="mini">Wedding Gift</span>
           <h3>Tanda Kasih</h3>
         </div>
-        </section>
+
         <div class="card gift-box">
           <p style="color:var(--muted);max-width:70ch;">
             Doa restu dan kehadiran Anda adalah anugerah terindah bagi kami. Namun, apabila Anda berkenan menyampaikan tanda kasih, dapat melalui informasi berikut ini.
@@ -899,7 +932,6 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
       <div class="card footer-box">
         <h4>Heri & Minarni Akwila</h4>
         <p>Dengan penuh syukur, kami mengucapkan terima kasih atas doa restu, perhatian, dan kehadiran Bapak/Ibu/Saudara/i pada hari bahagia kami.</p>
-        <p style="margin-top:10px;"></p>
       </div>
     </div>
   </footer>
@@ -911,14 +943,17 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
     </div>
   </div>
 
-<script>
-  // ====== CONFIG YANG MUDAH DIGANTI ======
-  const WEDDING_DATE = "2026-08-01T08:00:00"; // 1 Agustus 2026 jam 8 pagi
-  const INVITEE_NAME = new URLSearchParams(window.location.search).get("to") || "Bapak/Ibu/Saudara/i";
+  <script>
+    // ====== CONFIG YANG MUDAH DIGANTI ======
+    const WEDDING_DATE = "2026-08-01T08:00:00";
+    const INVITEE_NAME = new URLSearchParams(window.location.search).get("to") || "Bapak/Ibu/Saudara/i";
 
-    // Tampilkan nama tamu jika ingin dibuka personal lewat ?to=Nama Tamu
+    // ====== Tampilkan nama tamu personal ======
     const heroParagraph = document.querySelector('.hero-left p');
-    heroParagraph.innerHTML = `Yth. <strong>${INVITEE_NAME}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
+    if (heroParagraph) {
+      heroParagraph.innerHTML =
+        `Yth. <strong>${INVITEE_NAME}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
+    }
 
     // ====== Countdown ======
     const elDays = document.getElementById('days');
@@ -949,13 +984,17 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
       elMinutes.textContent = String(minutes).padStart(2, '0');
       elSeconds.textContent = String(seconds).padStart(2, '0');
     }
+
     updateCountdown();
     setInterval(updateCountdown, 1000);
 
     // ====== Tombol buka undangan ======
-    document.getElementById('openInvitation').addEventListener('click', () => {
-      document.getElementById('acara').scrollIntoView({behavior:'smooth'});
-    });
+    const openInvitationBtn = document.getElementById('openInvitation');
+    if (openInvitationBtn) {
+      openInvitationBtn.addEventListener('click', () => {
+        document.getElementById('acara')?.scrollIntoView({ behavior:'smooth' });
+      });
+    }
 
     // ====== Active nav on scroll ======
     const sections = [...document.querySelectorAll('main section, header.hero')];
@@ -994,33 +1033,43 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
       galleryModal.setAttribute('aria-hidden', 'true');
       modalImage.src = '';
     }
-    modalClose.addEventListener('click', closeModal);
-    galleryModal.addEventListener('click', (e) => {
-      if(e.target === galleryModal) closeModal();
-    });
+
+    if (modalClose) {
+      modalClose.addEventListener('click', closeModal);
+    }
+
+    if (galleryModal) {
+      galleryModal.addEventListener('click', (e) => {
+        if(e.target === galleryModal) closeModal();
+      });
+    }
+
     document.addEventListener('keydown', (e) => {
       if(e.key === 'Escape') closeModal();
     });
 
-    // ====== RSVP demo ======
+    // ====== RSVP demo lama diamankan supaya tidak error kalau form lama tidak ada ======
     const rsvpForm = document.getElementById('rsvpForm');
     const rsvpMessage = document.getElementById('rsvpMessage');
 
-    rsvpForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = new FormData(rsvpForm);
-      const nama = data.get('nama') || 'Tamu';
-      const hadir = data.get('kehadiran') || '-';
-      rsvpMessage.textContent = `Terima kasih, ${nama}. Konfirmasi Anda (${hadir}) sudah tersimpan secara lokal di browser.`;
-      localStorage.setItem('rsvp_demo', JSON.stringify(Object.fromEntries(data.entries())));
-      rsvpForm.reset();
-    });
+    if (rsvpForm && rsvpMessage) {
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(rsvpForm);
+        const nama = data.get('nama') || 'Tamu';
+        const hadir = data.get('kehadiran') || '-';
+        rsvpMessage.textContent = `Terima kasih, ${nama}. Konfirmasi Anda (${hadir}) sudah tersimpan secara lokal di browser.`;
+        localStorage.setItem('rsvp_demo', JSON.stringify(Object.fromEntries(data.entries())));
+        rsvpForm.reset();
+      });
+    }
 
     // ====== Copy bank number ======
     document.querySelectorAll('[data-copy]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const target = document.querySelector(btn.dataset.copy);
         if(!target) return;
+
         try{
           await navigator.clipboard.writeText(target.textContent.trim());
           const oldText = btn.textContent;
@@ -1036,59 +1085,46 @@ Kami dengan senang hati mengundang Anda untuk hadir dan menjadi saksi momen baha
     const music = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
 
-    musicToggle.addEventListener('click', async () => {
-      try{
-        if(music.paused){
-          await music.play();
-          musicToggle.classList.add('playing');
-        }else{
-          music.pause();
-          musicToggle.classList.remove('playing');
+    if (musicToggle && music) {
+      musicToggle.addEventListener('click', async () => {
+        try{
+          if(music.paused){
+            await music.play();
+            musicToggle.classList.add('playing');
+          }else{
+            music.pause();
+            musicToggle.classList.remove('playing');
+          }
+        }catch(err){
+          alert('Tambahkan file musik pada elemen <audio> terlebih dahulu.');
         }
-      }catch(err){
-        alert('Tambahkan file musik pada elemen <audio> terlebih dahulu.');
+      });
+    }
+
+    // ====== RSVP WhatsApp ======
+    function kirimWA() {
+      const nama = document.getElementById("nama")?.value.trim();
+      const jumlah = document.getElementById("jumlah")?.value.trim();
+      const hadir = document.getElementById("kehadiran")?.value || "Hadir";
+
+      if (!nama || !jumlah) {
+        alert("Mohon isi data terlebih dahulu");
+        return;
       }
-    });
-  </script>
-  <div class="rsvp-card">
-  <h3>Konfirmasi Kehadiran</h3>
 
-  <input type="text" id="nama" placeholder="Nama Lengkap" required>
-
-  <input type="number" id="jumlah" placeholder="Jumlah Tamu" min="1" required>
-
-  <select id="kehadiran">
-    <option value="Hadir">Hadir</option>
-    <option value="Tidak Hadir">Tidak Hadir</option>
-  </select>
-
-  <button onclick="kirimWA()">Kirim</button>
-</div>
-
-<script>
-function kirimWA() {
-  let nama = document.getElementById("nama").value;
-  let jumlah = document.getElementById("jumlah").value;
-  let hadir = document.getElementById("kehadiran").value;
-
-  if (!nama || !jumlah) {
-    alert("Mohon isi data terlebih dahulu");
-    return;
-  }
-
-  let nomor = "6282252843545"; // 🔥 GANTI NOMOR WHATSAPP KAMU
-
-  let pesan =
+      const nomor = "6282252843545"; // ganti dengan nomor WA kamu
+      const pesan =
 `RSVP Undangan Pernikahan
 -----------------------
 Nama: ${nama}
 Jumlah Tamu: ${jumlah}
 Kehadiran: ${hadir}`;
 
-  let url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+      const url = `https://wa.me/${nomor}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, "_blank");
+    }
 
-  window.open(url, "_blank");
-}
-</script>
+    window.kirimWA = kirimWA;
+  </script>
 </body>
 </html>
