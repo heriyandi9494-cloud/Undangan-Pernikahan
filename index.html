@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Undangan Pernikahan | Heri & Minarni Akwila</title>
+
+  <!-- Preview WhatsApp / Facebook / Telegram -->
+  <meta property="og:title" content="Undangan Pernikahan Heri & Minarni Akwila">
+
+  <meta property="og:description" content="Dengan penuh sukacita kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada hari bahagia kami.">
+
+  <meta property="og:image" content="foto-cover.jpg">
+
+  <meta property="og:type" content="website">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -148,12 +159,11 @@
       margin-bottom:12px;
       font-weight:400;
     }
-    .hero h2{
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(1.5rem,3vw,2.25rem);
-      font-weight:600;
-      margin-bottom:10px;
-    }
+.person h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;
+  color:var(--primary-dark);
+}
     .hero p{
       color:var(--muted);
       max-width:55ch;
@@ -678,9 +688,10 @@
     </svg>
   </button>
 
-  <audio id="bgMusic" loop>
-    <source src="" type="audio/mpeg">
-  </audio>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Browser kamu tidak mendukung audio.
+</audio>
 
   <header class="hero" id="home">
     <div class="container">
@@ -708,9 +719,8 @@
 
           <div class="hero-right">
             <div class="photo-frame">
-              <img src="https://6a4861ab1e75414caa97de48.imgix.net/sandbox/5%20Jul%202026,%2007.44.38.png" alt="Foto Minarni Akwila" />
+              <img src="https://6a4861ab1e75414caa97de48.imgix.net/sandbox/5%20Jul%202026,%2007.44.38.png" alt="Foto Heri dan Minarni Akwila">
             </div>
-
             <div class="countdown card" aria-label="Hitung mundur acara">
               <div class="count-box"><span id="days">00</span><small>Hari</small></div>
               <div class="count-box"><span id="hours">00</span><small>Jam</small></div>
@@ -759,7 +769,7 @@
             <div class="avatar">
               <img src="https://6a4861ab1e75414caa97de48.imgix.net/sandbox/Screenshot_9.jpg" alt="Foto mempelai pria">
             </div>
-            <h4>HERI</h4>
+            <h4>Heri</h4>
             <div class="subtitle">Putra dari Bapak Paulus Keramai & Ibu Eugenia Yeni</div>
             <p>yang dengan penuh syukur dan sukacita menyambut pernikahan ini sebagai awal perjalanan hidup bersama.</p>
           </article>
@@ -786,7 +796,7 @@
 
         <div class="event-grid">
           <article class="card event-card">
-            <h4>𝐏𝐞𝐦𝐛𝐞𝐫𝐤𝐚𝐭𝐚𝐧</h4>
+            <h4>Pemberkatan</h4>
             <div class="event-meta">
               <div>📅 <span>Sabtu, 01 Agustus 2026</span></div>
               <div>🕘 <span>08.00 WIB – selesai</span></div>
@@ -817,13 +827,13 @@
         <div class="story-grid">
           <article class="card story-item">
             <span class="year">2015</span>
-            <h5>Pertama Bertemu</h5>
+            <h4>Pertama Bertemu</h4>
             <p>Pertemuan kami bermula sejak masa sekolah. Dari pandangan pertama, ada rasa kagum yang diam-diam tumbuh di hati. Waktu berjalan membawa kami pada jalan masing-masing, namun tanpa disadari, perasaan itu tetap tinggal dan menunggu waktu terbaik untuk dipertemukan kembali.</p>
           </article>
 
           <article class="card story-item">
             <span class="year">2024</span>
-            <h5>Menjalin Hubungan</h5>
+            <h4>Menjalin Hubungan</h4>
             <p>Seiring waktu, komunikasi yang terjalin membuat kami semakin dekat. Dari percakapan sederhana, tumbuh rasa nyaman, percaya, dan kasih yang semakin dalam. Hingga akhirnya, dengan niat yang tulus dan keyakinan untuk melangkah bersama, kami memutuskan mengikat hubungan ini dalam sebuah pertunangan di tahun 2024.</p>
           </article>
 
@@ -939,7 +949,7 @@
   <div class="modal" id="galleryModal" aria-hidden="true">
     <div class="modal-content">
       <button class="modal-close" id="modalClose" aria-label="Tutup gambar">✕</button>
-      <img id="modalImage" src="" alt="Galeri besar">
+      <img id="modalImage" src="#" alt="Galeri besar">
     </div>
   </div>
 
@@ -951,8 +961,8 @@
     // ====== Tampilkan nama tamu personal ======
     const heroParagraph = document.querySelector('.hero-left p');
     if (heroParagraph) {
-      heroParagraph.innerHTML =
-        `Yth. <strong>${INVITEE_NAME}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
+heroParagraph.innerHTML =
+`Yth. <strong>${INVITEE_NAME.replace(/[<>]/g,'')}</strong>, Dengan hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada acara pernikahan kami.`;
     }
 
     // ====== Countdown ======
